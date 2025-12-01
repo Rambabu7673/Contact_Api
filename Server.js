@@ -25,13 +25,15 @@ app.get("/", (req, res) => {
 });
 
 // Mongoose Connect
-mongoose
-  .connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL, {
     dbName: "Rambabu",
   })
   .then(() => console.log("MongoDB is Connected...!"))
   .catch((err) => console.log(err));
 
 // Server Start
-const port = process.env.PORT;
-app.listen(port, () => console.log(`Server is Runing on port = ${port}`));
+const port = process.env.PORT || 2000;
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on port = ${port}`);
+});
